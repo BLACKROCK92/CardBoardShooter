@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour {
     public float waveWait;
     public float spawnWait;
     public int objectCount;
-    public GameObject[] spawners = new GameObject[8];
+    public GameObject[] spawners = new GameObject[14];
     public GameObject objectPrefab;
 
     void Start()
@@ -22,8 +22,9 @@ public class Spawner : MonoBehaviour {
         {
             for (int i = 0; i < objectCount; i++)
             {
-                Vector3 spawnPosition = spawners[Random.Range(0, 7)].transform.position;
-                Quaternion spawnRotation = Quaternion.identity;
+                Vector3 spawnPosition = spawners[Random.Range(0, spawners.Length)].transform.position;
+                Quaternion spawnRotation = new Quaternion();
+                spawnRotation.Set(-90, 0, 0,0);
                 Instantiate(objectPrefab, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }

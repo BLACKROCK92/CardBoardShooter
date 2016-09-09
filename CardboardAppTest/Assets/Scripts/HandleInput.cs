@@ -5,6 +5,7 @@ using System.Collections;
 public class HandleInput : MonoBehaviour, IGvrGazeResponder
 {
     private Vector3 startingPosition;
+    public GameObject ghostModel;
 
     void Start()
     {
@@ -14,7 +15,7 @@ public class HandleInput : MonoBehaviour, IGvrGazeResponder
 
     public void SetGazedAt(bool gazedAt)
     {
-        GetComponent<Renderer>().material.color = gazedAt ? Color.white : Color.black;
+        ghostModel.GetComponent<Renderer>().material.color = gazedAt ? Color.red : Color.white;
     }
 
     public void ToggleVRMode()
@@ -48,7 +49,7 @@ public class HandleInput : MonoBehaviour, IGvrGazeResponder
     {
         //transform.position = startingPosition;
         GameObject.Find("GameController").GetComponent<GameController>().UpdateScore(1);
-        Destroy(this.gameObject, 0.2f);
+        Destroy(this.gameObject, 0.1f);
     }
 
     #region IGvrGazeResponder implementation
